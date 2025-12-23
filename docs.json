@@ -8,6 +8,11 @@
     "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
+  "seo": {
+    "metatags": {
+        "canonical": "https://gql.ch"
+    }
+  }
   "navigation": {
     "tabs": [
       {
