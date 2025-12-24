@@ -3,9 +3,8 @@ title: 'MATCH'
 ---
 
 
-Find shortest path p, from a user u1 to user u2 traversing :knows edges 1+ times.
+Find shortest path p, from a user u1 to user u2 traversing :knows edges 1+ (`{1,}`) times.
 
-(t2:tables {table_name: "Table2"}) # to a tables node t2.
 
 ```
 MATCH p = ANY SHORTEST (u1:users {username: "saqib"})-[:knows]->{1,}(t2:users {username: "uroosa"}) 
