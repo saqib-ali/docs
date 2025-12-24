@@ -3,11 +3,11 @@
   "theme": "mint",
   "name": "GQL Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#BD93F9",
+    "light": "#BD93F9",
+    "dark": "#BD93F9"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/images/Untitleddrawing.png",
   "seo": {
     "metatags": {
         "canonical": "https://gql.ch"
@@ -61,6 +61,12 @@
     }
   },
   "appearance": {
-    "default": "dark"
+    "default": "dark",
+    "strict": true
+  },
+  "background": {
+    "color": {
+      "dark": "#282A36"
+    }
   }
 }
