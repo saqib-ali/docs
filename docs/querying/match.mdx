@@ -7,6 +7,6 @@ Find shortest path `path`, from a user `u1` to user `u2` traversing `:knows` edg
 
 
 ```gql
-MATCH path = ANY SHORTEST (u1:users {username: "saqib"})-[:knows]->{1,}(t2:users {username: "uroosa"}) 
+MATCH path = ANY SHORTEST (u1:users {username: "saqib"})-[:knows]->{1,}(t2:users {username: "uroosa"})
 RETURN u1.username, u2.username, path_length(p) AS num_hops
 ```
