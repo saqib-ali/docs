@@ -7,7 +7,7 @@
     "light": "#BD93F9",
     "dark": "#BD93F9"
   },
-  "favicon": "/images/Untitleddrawing.png",
+  "favicon": "/images/gql_ch_favicon.png",
   "seo": {
     "metatags": {
         "canonical": "https://gql.ch"
@@ -34,7 +34,7 @@
       }
     ]
   },
-  "logo": "/images/CopyofUntitleddrawing.svg",
+  "logo": "/images/gql_ch_icon.svg",
   "navbar": {
     "links": [],
     "primary": {
