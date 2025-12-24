@@ -27,7 +27,7 @@
           {
             "group": "Functions",
             "pages": [
-              "REDUCE"
+              "docs/functions/reduce"
             ]
           }
         ]
