@@ -1,0 +1,15 @@
+---
+title: 'WHERE'
+---
+
+
+```gql
+USE graph social_network;
+
+MATCH (x:comment WHERE x.comment_date > '2025-01-01')-[z:author]->(y)
+RETURN y.name AS student_name, x.content AS comment_content
+```
+
+The first line selects the database to query, namely social_network, and the second one specifies a path pattern to match in the graph. The last line defines what to return from the matched pattern.
+
+The path pattern in the [MATCH](MATCH.mdx) pattern consists of three subpatterns, listed from left to right as they appear in the query. The first one matches any node, noted by (), where the `comment_date` is greater than '2025-01-01', storing identifiers in variable `x`. The second subpattern matches directional edges, captured by -[]->,that have an `author` label, and binding them to variable `z`. Finally, the third one matches any node, storing identifiers in y. Each of these subpatterns yields a set of paths, where a path is defined as an alternating sequence of nodes and edges, starting and ending with a node. In particular, edge patterns yield the edge’s identifier and include the connected nodes that form the path.
