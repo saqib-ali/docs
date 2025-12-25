@@ -1,6 +1,6 @@
 ---
 title: "MATCH"
-description: "Ascii-art syntax for expressing patterns."
+description: "Ascii-art ()-[]->() syntax for expressing patterns."
 ---
 
 ## Variable Binding in GQL
@@ -9,7 +9,9 @@ Retrieve all the teachers who liked a comment made by students who they know sin
 
 
 ```gql
-MATCH path = (x:teacher)-[:likes ]->(:comment)-[:author]->(:student)-[y:knows WHERE y.since < 2021]-(x)
+MATCH path = (x:teacher)-[:likes ]->
+(:comment)-[:author]->
+(:student)-[y:knows WHERE y.since < 2021]-(x)
 ```
 
 Here we are binding a `:teacher`-labelled node to the variable `x` and requiring there be a `:likes`-labelled edge to a node representing a `comment`. In GQL ASCII-art syntax, round brackets represent nodes, while square brackets represent edges. We then require this comment to have been made by a student (represented by an `:author` edge to a node with the label `student`). Finally, we require this student to have any edge to the original node bound to `x`, that this edge is labelled with `:knows` and that the value of its since attribute is greater than 2021
@@ -19,7 +21,8 @@ Here we are binding a `:teacher`-labelled node to the variable `x` and requiring
 Find shortest path `path`, from a user `u1` to user `u2` traversing `:knows` edges 1+ (`{1,}`) times.
 
 ```gql
-MATCH path = ANY SHORTEST (u1:users {username: "saqib"})-[:knows]->{1,}(t2:users {username: "uroosa"})
+MATCH path = ANY SHORTEST (u1:users {username: "saqib"})-
+[:knows]->{1,}(t2:users {username: "uroosa"})
 RETURN u1.username, u2.username, path_length(p) AS num_hops
 ```
 
@@ -28,7 +31,9 @@ RETURN u1.username, u2.username, path_length(p) AS num_hops
 Find a pair of friends in the same city (`(y.city = x.city)`) who transfer money (`(account_x)−[t1:transfer]−>(account_z)−[t2:transfer]−>(account_y)`) to each other using a common friend who lives elsewhere (`(x.city<>z.city)`).
 
 ```gql
-MATCH (x:account_holder)−[:friends]−>(y:account_holder)−[:friends]−>(z:account_holder)−[:friends]−>(x:account_holder)
+MATCH (x:account_holder)−[:friends]−>(y:account_holder)−
+[:friends]−>(z:account_holder)−
+[:friends]−>(x:account_holder)
 , (x)−[:owns]−>(account_x)
 , (y)−[:owns]−>(account_y)
 , (z)−[:owns]−>(account_z)
