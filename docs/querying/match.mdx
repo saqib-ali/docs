@@ -3,6 +3,14 @@ title: "MATCH"
 description: "Ascii-art syntax for expressing patterns."
 ---
 
+## Variable Binding in GQL
+Retrieve all the teachers who liked a comment made by students who they know since 2021 or earlier:
+
+```gql
+MATCH path = (x:teacher)-[:likes ]->(:comment)-[:author]->(:student)-[y:knows WHERE y.since < 2021]-(x)
+
+Here we are binding a :Teacher-labelled node to the variable x and requiring there be a :Likes-labelled edge to a node representing a Comment. In GQL ASCII-art syntax, round brackets represent nodes, while square brackets represent edges. We then require this comment to have been made by a student (represented by an :Author edge to a node with the label Student). Finally, we require this student to have any edge to the original node bound to x, that this edge is labelled with :Knows and that the value of its since attribute is greater than 2021
+
 ## Shortest Path
 
 Find shortest path `path`, from a user `u1` to user `u2` traversing `:knows` edges 1+ (`{1,}`) times.
