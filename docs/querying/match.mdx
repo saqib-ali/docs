@@ -4,6 +4,7 @@ description: "Ascii-art `()-[]->()` syntax for expressing patterns."
 ---
 
 import social_network_graph from '/snippets/social-network.mdx';
+import back_transfer_graph from '/snippets/bank-transfer.mdx';
 
 
 ## Variable Binding in GQL
@@ -34,6 +35,9 @@ RETURN u1.username, u2.username, path_length(p) AS num_hops
 ## Expressing complex queries using Multiple Paths
 
 Find a pair of friends in the same city (`(y.city = x.city)`) who transfer money (`(account_x)−[t1:transfer]−>(account_z)−[t2:transfer]−>(account_y)`) to each other using a common friend who lives elsewhere (`(x.city<>z.city)`).
+
+<back_transfer_graph/>
+
 
 ```gql
 MATCH (x:account_holder)−[:friends]−>(y:account_holder)−
