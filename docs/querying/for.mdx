@@ -18,12 +18,12 @@ graph TB
     n2 -->|train 🚂 <br/>duration = 120| n3
     n2 -->|train 🚂| n4
     n4 -->|train 🚂| n5
-    n3 -->|train| n5
-    n5 -->|flight<br/>code = AF406<br/>duration = 780| n8
-    n6 -->|flight| n8
-    n6 -->|flight| n7
-    n7 -->|car<br/>tolls = 74| n1
-    n4 -->|train| n6
+    n3 -->|train 🚂| n5
+    n5 -->|flight ✈️<br/>code = AF406<br/>duration = 780| n8
+    n6 -->|flight ✈️| n8
+    n6 -->|flight ✈️| n7
+    n7 -->|car ✈️<br/>tolls = 74| n1
+    n4 -->|train 🚂| n6
 
 
     classDef cityNode fill:#BD93F9,stroke-width:0px
