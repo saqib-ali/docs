@@ -3,7 +3,7 @@ title: "FOR"
 ---
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#f9f9f9','primaryTextColor':'#333','primaryBorderColor':'#333','lineColor':'#FF79C6','secondaryColor':'#FF79C6','tertiaryColor':'#fff', 'background':'#282A36'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'lineColor':'#FF79C6','secondaryColor':'#FF79C6','background':'#282A36'}}}%%
 graph TB
     n1[Bayreuth, Germany]
     n2[Nürnberg, Germany]
@@ -13,7 +13,6 @@ graph TB
     n6[Amsterdam, Netherlands]
     n7[n7: city<br/>name = Rome, Italy]
     n8[n8: city<br/>name = Santiago<br/>country = Chile]
-    
     n1 -->|e1: train| n2
     n2 -->|e2: train| n1
     n2 -->|e3: train<br/>duration = 120| n3
@@ -27,8 +26,7 @@ graph TB
     n4 -->|e11: train| n6
 
 
-    classDef cityNode fill:#BD93F9
+    classDef cityNode fill:#BD93F9,stroke-width:0px
     class n1,n2,n3,n4,n5,n6,n7,n8 cityNode
-    linkStyle default stroke:red,color:red
     
 ```
