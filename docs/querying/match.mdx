@@ -3,6 +3,9 @@ title: "MATCH"
 description: "Ascii-art `()-[]->()` syntax for expressing patterns."
 ---
 
+import social_network_graph from '/snippets/social-network.mdx';
+
+
 ## Variable Binding in GQL
 
 Retrieve all the teachers who liked a comment made by students who they know since 2021 or earlier:
@@ -20,7 +23,7 @@ Here we are binding a `:teacher`-labelled node to the variable `x` and requiring
 
 Find shortest path `path`, from a user `u1` to user `u2` traversing `:knows` edges 1+ (`{1,}`) times.
 
-
+<social_network_graph/>
 
 ```gql
 MATCH path = ANY SHORTEST (u1:users {username: "saqib"})-
