@@ -20,6 +20,8 @@ Here we are binding a `:teacher`-labelled node to the variable `x` and requiring
 
 Find shortest path `path`, from a user `u1` to user `u2` traversing `:knows` edges 1+ (`{1,}`) times.
 
+
+
 ```gql
 MATCH path = ANY SHORTEST (u1:users {username: "saqib"})-
 [:knows]->{1,}(t2:users {username: "uroosa"})

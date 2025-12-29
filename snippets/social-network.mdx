@@ -1,0 +1,21 @@
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'lineColor':'#F1FA8C','secondaryColor':'#F1FA8C','background':'#282A36'}}}%%
+graph TB
+    saqib[Saqib 👨]
+    fatima[Fatima 👩]
+    scott[Scott 👨]
+    eleni[Eleni 👩]
+    uroosa[Uroosa 👩]
+    angela[Angela 👩]
+    saqib -->|co-worker| fatima
+    fatima -->|friend| eleni
+    eleni -->|friend| uroosa
+    saqib -->|friend| angela
+    angela -->|co-worker| scott
+    scott -->|friend| uroosa
+
+
+    classDef nodes fill:#BD93F9,stroke-width:0px
+    class saqib,fatima,angela,uroosa,eleni,scott nodes
+	
+```
