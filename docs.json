@@ -22,6 +22,7 @@
             "group": "Querying",
             "pages": [
               "docs/querying/filter",
+              "docs/for",
               "docs/querying/where",
               "docs/querying/match"
             ]
