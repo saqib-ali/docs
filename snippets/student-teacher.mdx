@@ -1,0 +1,19 @@
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'lineColor':'#F1FA8C','secondaryColor':'#F1FA8C','background':'#282A36'}}}%%
+graph LR
+    fatima[:Teacher <br/>name: Fatima 👩<br/>status: Active]
+    uroosa[:Student <br/>name: Uroosa 👩<br/>status: Active]
+
+    comment_1[:comment<br/>content: I love GQL<br/>]
+
+    fatima -->|:knowns<br/>since:2025| uroosa
+    fatima -->|:likes| comment_1
+    comment_1 -->|:author| uroosa
+
+    classDef nodes fill:#BD93F9,stroke-width:0px
+    class eva,fatima,angela,uroosa,eleni,scott nodes
+	
+
+    classDef subgraphStyle fill:#282A36, stroke-width:0px
+    class row1,row2,row3 subgraphStyle
+  ```
