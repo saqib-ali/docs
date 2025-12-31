@@ -3,6 +3,22 @@ title: "FOR"
 ---
 
 import travel_network_graph from '/snippets/travel-network.mdx';
+import social_network_graph from '/snippets/social-network.mdx';
 
+
+`FOR` statement unnests a list into individual records by iterating over its elements, allowing subsequent statements to process these elements one by one.
+
+### Using FOR statement to iterate over each edge in a Quantified Path Pattern
+
+Suppose we are interested in the all the hops required to go from Bayreuth to Santiago:
 
 <travel_network_graph/>
+
+We can use the FOR loop as following
+
+```gql
+match paths = any shortest  (a:city {_id:'Bayreuth'})-[edges:train|flight]->{1,}(b:city {_id:'Santiago'})
+for edge in edges
+return distinct table(edge._from, edge._to, labels(edge), pnodeIds(paths), length(paths));
+```
+We are using the FOR statement to unnest (decompose) the edges. 
