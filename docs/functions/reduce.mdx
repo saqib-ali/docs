@@ -2,3 +2,34 @@
 title: 'REDUCE'
 ---
 
+import travel_network_graph from '/snippets/travel-network.mdx';
+import social_network_graph from '/snippets/social-network.mdx';
+import ubo_graph from '/snippets/ubo-graph.mdx';
+
+
+
+REDUCE function applies a lambda value expression to each element in a list, perform cumulative calculations, and return a single value.
+
+
+### Syntax
+
+```gql
+reduce(accumulator = initial_value, variable IN list | expression)
+```
+
+### Aggregate weights along PATH(s) in GQL
+
+Suppose we are interested in the Uroosa's aggregated percentage in Hotel Kitchen Sink
+
+<ubo_graph/>
+We can use REDUCE as following:
+
+```gql
+match path = all (a:person {_id:'uroosa'})-[owns]->{0,} (b:business {_id:'hotel kitchen sink'})
+return path, 
+reduce(total_ownership = 1 , own in owns | total_ownership * own.percentage) as ownership
+next 
+return sum(ownership);
+```
+
+Note that we first mutiply Ownership percentages along each path and then the sum up the percentages for the 2 paths.
