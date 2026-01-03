@@ -24,7 +24,7 @@ next
 return reduce (geo_mean_product = 1, resident in residents | resident.income * geo_mean_product)  ^ (1.0 / LENGTH(residents)) as income_geometric_mean;
 ```
 
-Note that we first use the [COLLECT_LIST](/docs/functions/collect-list) to get all the people who live in the same city as Fatima in a LIST.
+Note that we first use the [COLLECT_LIST](/docs/functions/collect-list) to get all the people who live in the same city as Fatima in a LIST. Next we use the [REDUCE](/docs/functions/reduce) to calculate the Geometric Mean.
 
 An alternate way to calculate Geometric Mean would be:
 
