@@ -1,11 +1,34 @@
 ---
-title: 'COLLECT_LIST'
+title: "COLLECT_LIST"
 ---
 
+Collects values into a list
 
 import travel_network_graph from '/snippets/travel-network.mdx';
 import social_network_graph from '/snippets/social-network.mdx';
 import ubo_graph from '/snippets/ubo-graph.mdx';
 import social_network_city_graph from '/snippets/social-network-city.mdx';
 
+### Calculating Geometric Mean using COLLECT_LIST and REDUCE
 
+Geometric Mean is a measure of central tendency that calculates an average of the data using multiplication instead of addition. For a set of n numbers, the geometric mean is the nth root of the product of those numbers. For example, the geometric mean of the numbers 2, 3, and 14 equals (2 \* 3 \* 14)1/3 = (84)1/3 = 4.37952. Geometric Mean is particularly useful when the data is skewed and a simple average does not work.
+
+Suppose we are interested in the Geometric Mean Income of all the people who live in the same city as Fatima:
+
+<social_network_city_graph />
+
+```gql
+match path = ALL  (a {_id:'fatima'})-[:lives_in]->(b)<-[:lives_in]-(c)
+return COLLECT_LIST(c) as residents
+next
+return reduce (geo_mean_product = 1, resident in residents | resident.income * geo_mean_product)  ^ (1.0 / LENGTH(residents)) as income_geometric_mean;
+```
+
+Note that we first use the [COLLECT_LIST](/docs/functions/collect-list) to get all the people who live in the same city as Fatima in a LIST.
+
+An alternate way to calculate Geometric Mean would be:
+
+```gql
+match path = ALL  (a {_id:'fatima'})-[:lives_in]->(b)<-[:lives_in]-(c)
+return exp(AVG(ln(c.income))) as income_geometric_mean;
+```
