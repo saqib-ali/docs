@@ -30,6 +30,7 @@
           {
             "group": "Functions",
             "pages": [
+              "docs/functions/collect-list",
               "docs/functions/reduce"
             ]
           }
