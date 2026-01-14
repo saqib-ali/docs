@@ -12,3 +12,5 @@ At a high level, when evaluating a query, GQL keeps track of three things:
 1. the working graph, which is the property graph we are using to match our patterns currently;
 2. the working table, that stores the information computed thus far; and 
 3. the working record, which contains the tuple of the result we are currently using. 
+
+GQL is developed as a query language for graphs and recursion is typical when working with Graphs. The typical GQL MATCH pattern `(a)-[:links_to]->{m,n}(b)` selects all nodes `b` that are reachable from `a` by following one or more edges in the graph, traversing the graph using the `:links_to` relation. Recursive queries compute the transitive closure of the graph, and return the nodes in the graph that can be reached starting from a given one.
