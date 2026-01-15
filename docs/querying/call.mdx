@@ -1,6 +1,8 @@
 ---
 title: 'CALL'
 ---
+import highway_network_graph from '/snippets/highway-network.mdx';
+
 
 CALL statement in GQL invokes a Procedure
 
@@ -8,10 +10,20 @@ CALL statement in GQL invokes a Procedure
 
 
 Suppose we are interested in the number of highways flowing into each of the Highway: 
-
-
+<highway_network_graph/>
 
 We can use the CALL statement to invoke and inline procedure as follows:
 
+```gql
+MATCH nodes = (b)
+CALL {
+  MATCH path = (a)-[e1:flows_to]->(b)
+  return path
+    , count(distinct e1) as incoming_nodes_count
+    , COLLECT_LIST(distinct a.name) as incoming_nodes
+}
+return table(b.name, incoming_nodes_count, incoming_nodes)
+order by incoming_nodes_count desc;
+```
 
 
