@@ -21,6 +21,7 @@
           {
             "group": "Querying",
             "pages": [
+              "docs/querying/call",
               "docs/querying/filter",
               "docs/querying/for",
               "docs/querying/where",
