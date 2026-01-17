@@ -1,19 +1,26 @@
 ```mermaid
 
 %%{init: {'theme':'base', 'themeVariables': {'lineColor':'#F1FA8C','secondaryColor':'#F1FA8C','background':'#282A36'}}}%%
-graph TB
+graph LR
+
+    subgraph row1[" "]
+
     saqib[<b>:person</b><br/>name: Saqib👨<br/>income: 375000]
-    fatima[<b>:person</b><br/>name: Fatima 👩<br/>income: 195000]
     scott[<b>:person</b><br/>name: Scott 👨<br/>income: 205000]
+    fatima[<b>:person</b><br/>name: Fatima 👩<br/>income: 195000]
+    hannah[<b>:person</b><br/>name: Hannah 👩<br/>income: 185000]
+    zainab[<b>:person</b><br/>name: Zainab 👩<br/>income: 190000]
+    capitola[<b>:city</b><br/>name:Capitola]
+
+    end
+
+    subgraph row2[" "]
     eleni[<b>:person</b><br/>name: Eleni 👩<br/>income: 185000]
     uroosa[<b>:person</b><br/>name: Uroosa 👩<br/>income: 175000]
     angela[<b>:person</b><br/>name: Angela 👩<br/>income: 195000]
-    hannah[<b>:person</b><br/>name: Hannah 👩<br/>income: 185000]
     maryam[<b>:person</b><br/>name: Maryam 👩<br/>income: 155000]
-    zainab[<b>:person</b><br/>name: Zainab 👩<br/>income: 190000]
-
-    capitola[<b>:city</b><br/>name:Capitola]
     santacruz[<b>:city</b><br/>name:Santa Cruz]
+    end
 
     %% saqib -->|:relationship<br/>type: co-worker| fatima
     %% fatima -->|:relationship<br/>type: friend| eleni
@@ -22,7 +29,6 @@ graph TB
     %% angela -->|:relationship<br/>type: co-worker| scott
     %% scott -->|:relationship<br/>type: friend| uroosa
 
-    subgraph row1[" "]
 
     saqib -->|<b>:lives_in</b>| capitola
     scott -->|<b>:lives_in</b>| capitola
@@ -31,7 +37,6 @@ graph TB
     zainab -->|<b>:lives_in</b>| capitola
 
 
-    subgraph row2[" "]
 
     angela -->|<b>:lives_in</b>| santacruz
     uroosa -->|<b>:lives_in</b>| santacruz
@@ -41,6 +46,7 @@ graph TB
 
     classDef nodes fill:#BD93F9,stroke-width:0px
     class saqib,fatima,angela,uroosa,eleni,scott,maryam,zainab,hannah nodes
-	
 
+    classDef subgraphStyle fill:#282A36, stroke-width:0px
+    class row1,row2,row3 subgraphStyle
 ```
