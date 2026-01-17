@@ -1,0 +1,32 @@
+---
+title: "OPTIONAL MATCH"
+---
+
+import social_network_city_graph from '/snippets/social-network-city.mdx';
+
+Use OPTIONAL MATCH to find patterns that might not exist, returning empty values when patterns don't match:
+
+### Return nodes where the relationship may not exist
+
+Suppose we are interested all the persons who have income of greater and 185000 and not live in Capitola.
+
+<social_network_city_graph />
+
+```gql
+
+MATCH (resident:person WHERE resident.income > 185000)
+OPTIONAL MATCH (resident)-[:lives_is]->(c:city)
+    WHERE c.name <> 'Capitola' 
+RETURN p.name as Person, c.name as City
+```
+
+This query finds all Person nodes where the income is greater than 185000, and optionally matches cities they're connected to (excluding Capitola). If a person isn't connected to any city (or only to Santa Cruz), the City column returns empty, but the person is still included in the results.
+
+Output
+
+The optional match ensures that people without city connections are still returned
+
+| Person | City       |
+| ------ | ---------- |
+| Angela | Santa Cruz |
+| Huda   |            |
