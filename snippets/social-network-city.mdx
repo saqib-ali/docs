@@ -22,16 +22,21 @@ graph TB
     %% angela -->|:relationship<br/>type: co-worker| scott
     %% scott -->|:relationship<br/>type: friend| uroosa
 
+    subgraph row1[" "]
 
     saqib -->|<b>:lives_in</b>| capitola
-    angela -->|<b>:lives_in</b>| santacruz
     scott -->|<b>:lives_in</b>| capitola
-    uroosa -->|<b>:lives_in</b>| santacruz
     fatima -->|<b>:lives_in</b>| capitola
-    eleni -->|<b>:lives_in</b>| santacruz
     hannah -->|<b>:lives_in</b>| capitola
-    maryam -->|<b>:lives_in</b>| santacruz
     zainab -->|<b>:lives_in</b>| capitola
+
+
+    subgraph row2[" "]
+
+    angela -->|<b>:lives_in</b>| santacruz
+    uroosa -->|<b>:lives_in</b>| santacruz
+    eleni -->|<b>:lives_in</b>| santacruz
+    maryam -->|<b>:lives_in</b>| santacruz
 
 
     classDef nodes fill:#BD93F9,stroke-width:0px
