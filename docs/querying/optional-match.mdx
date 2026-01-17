@@ -20,7 +20,7 @@ OPTIONAL MATCH (resident)-[:lives_is]->(c:city)
 RETURN p.name as Person, c.name as City
 ```
 
-This query finds all Person nodes where the income is greater than 185000, and optionally matches cities they're connected to (excluding Capitola). If a person isn't connected to any city (or only to Santa Cruz), the City column returns empty, but the person is still included in the results.
+This query finds all Person nodes where the income is greater than 185000, and optionally matches cities they're connected to (excluding Capitola). If a person isn't connected to any city, the City column returns empty, but the person is still included in the results.
 
 Output
 
