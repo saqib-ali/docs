@@ -27,3 +27,20 @@ order by incoming_nodes_count desc;
 ```
 
 
+## For each node list paths to all other nodes
+
+We are interested in getting all paths from each to all other nodes:
+
+<highway_network_graph/>
+
+```gql
+MATCH nodes = (a)
+CALL {
+  MATCH path = (a)-[edges:flows_to]->{0,}(b)
+  return reduce(path = a._id, edge in edges | path || '->' || edge._to) as route
+  , b
+  
+}
+return table(a.name as starting, b.name as ending, route)
+
+```
