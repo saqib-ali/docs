@@ -2,7 +2,7 @@
 title: 'CALL'
 ---
 import highway_network_graph from '/snippets/highway-network.mdx';
-
+import streaming_network_graph from '/snippets/streaming-network.mdx';
 
 CALL statement in GQL invokes a Procedure
 
@@ -43,4 +43,23 @@ CALL {
 }
 return table(a.name as starting, b.name as ending, route)
 
+```
+
+## Movie recommendations based on what the 1 degree connection and 2nd degree connection have watched
+
+<streaming_network_graph/>
+
+Recommend movies based on what account 1st and 2nd degree connection have watched:
+
+```gql
+MATCH friends = ALL  (account_a)-[:friends]->{0,2}(account_b)
+CALL {
+  MATCH path = (account_a)-[:watched]->(movie_a)
+    , (account_b)-[:watched]->(movie_b)
+  FILTER account_a <> account_b and movie_a <> movie_b
+  return path
+    , COLLECT_LIST(distinct movie_a.title) as recommended_movies
+}
+FILTER account_a <> account_b
+return table(account_a.name, account_b.name, recommended_movies);
 ```
