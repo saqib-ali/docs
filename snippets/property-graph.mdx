@@ -1,0 +1,52 @@
+```mermain
+graph
+%%{init: {'flowchart': {'padding': 0,"top": 0,"bottom": 0, 'diagramPadding':0, 'nodeSpacing': 0, 'rankSpacing':0}}}%%
+
+subgraph s3["Sample Query Graph (Same City Followers)"]
+
+User1@{ shape: "circle" }
+User2@{ shape: "circle" }
+City3["City"]
+
+User1 -->|FOLLOWS| User2
+User1 -->|LIVES_IN| City3
+User2 -->|LIVES_IN| City3
+end
+
+subgraph s1["Property Graph"]
+Zara@{ shape: "circle" }
+Sara@{ shape: "circle" }
+
+C1["Malibu"]
+C2["Aptos"]
+
+%% LIVES_IN relationships
+Zara -- "LIVES_IN" --> C1
+%% FOLLOWS relationships
+Zara -- "FOLLOWS" --> Sara
+Zara -- "LIVES_IN" --> C2
+
+
+
+end
+
+subgraph s2["Property Graph Schema"]
+
+
+User@{ shape: "circle" }
+City["City"]
+
+User@{ label: "User" } -->|"LIVES_IN"| City
+User -- FOLLOWS --> User
+
+end
+
+
+classDef nodes fill:#BD93F9,stroke-width:0px
+class User1,User2,User,U1,U2,Zara,Sara nodes
+
+
+classDef cities fill:#BD93F9,stroke-width:0px
+class City,C1,C2,City3 cities
+
+```
