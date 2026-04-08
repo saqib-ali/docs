@@ -3,6 +3,8 @@ title: "GQL Docs"
 description: "Graph Query Language documentation"
 ---
 
+import property_graph from '/snippets/property-graph.mdx';
+
 
 # Introduction 
 
@@ -18,4 +20,6 @@ GQL is developed as a query language for graphs and recursion is typical when wo
 # Property Graph
 Graph Databases typically store data as property graphs where both nodes and edges carry arbitrary key-value attributes. Graph Query Language (GQL) enables expressive pattern matching that we exploit for structural retrieval. GQL provides a declarative, SQL-like syntax for pattern matching, filtering, and aggregation.
 
-Nnative graph database that implements the labeled-property graph model store data as labeled nodes connected by typed, directed relationships, where both nodes and relationships may carry properties. This design allows relationships to be queried and traversed directly, without relying on joins or intermediary structures. These databases use GQL, a declarative graph query language designed to express graph patterns intuitively and concisely, making it easier to formulate queries that reflect the underlying graph structure.
+<property_graph/>
+
+Native graph database that implements the labeled-property graph model store data as labeled nodes connected by typed, directed relationships, where both nodes and relationships may carry properties. This design allows relationships to be queried and traversed directly, without relying on joins or intermediary structures. These databases use GQL, a declarative graph query language designed to express graph patterns intuitively and concisely, making it easier to formulate queries that reflect the underlying graph structure.
