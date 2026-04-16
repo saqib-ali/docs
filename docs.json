@@ -63,7 +63,8 @@
   },
   "footer": {
     "socials": {
-      "website": "https://gql.net"
+      "website": "https://gql.net",
+      "mastodon": "https://mastodon.social/@gql"
     }
   },
   "appearance": {
