@@ -4,7 +4,8 @@ title: "OPTIONAL MATCH"
 
 import social_network_city_graph from '/snippets/social-network-city.mdx';
 
-Use OPTIONAL MATCH to find patterns that might not exist, returning empty values when patterns don't match:
+Use OPTIONAL MATCH to find patterns that might not exist, returning empty values when patterns don't match. The OPTIONAL MATCH clause works like MATCH but allows parts of the pattern to be missing. It preserves nulls in the result when the pattern does not fully match, similar to a left outer join in
+relational databases.
 
 ### Return nodes where the relationship may not exist
 
