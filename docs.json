@@ -26,7 +26,8 @@
               "docs/querying/filter",
               "docs/querying/for",
               "docs/querying/where",
-              "docs/querying/match"
+              "docs/querying/match",
+              "docs/querying/return"
             ]
           },
           {

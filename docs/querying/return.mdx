@@ -1,0 +1,12 @@
+---
+title: "RETURN"
+---
+
+The [GQL](https://gql.net) RETURN clause is used to specify the output of the query. It typically follows a [MATCH](/docs/querying/match) clause and allows the user to retrieve nodes, relationships, or specific properties from the matched subgraph.
+
+```gql
+MATCH (u: User)−[:PERFORMED]−>(e: Event{activity: 'Submit'})
+RETURN u.name
+```
+
+This query returns the name of each user who has performed the Submit activity. Expressions within the RETURN clause can also include computed values, aggregations, and projections. The result set can be further refined with sorting or deduplication using clauses like ORDER BY and DISTINCT.
