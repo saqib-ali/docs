@@ -1,0 +1,14 @@
+---
+title: "WITH"
+---
+
+[GQL](https://gql.net) `WITH` clause allows for chaining queries and controlling the scope of variables passed between query parts. It is especially useful for aggregation, filtering on intermediate results, or renaming fields. Any variable not explicitly passed with `WITH` is no longer available in the next part of the query.
+
+```gql
+MATCH (u:User)−[:PERFORMED]−>(e: Event)
+WITH u.name AS user, count (e) AS frequency
+WHERE frequency > 3
+RETURN user, frequency
+```
+
+Here, `WITH` is used to aggregate the number of events each user has performed,then [WHERE](/docs/querying/where) is used to filter users who performed more than three events. This pattern is common in analytical queries where results need to be aggregated and filtered.
