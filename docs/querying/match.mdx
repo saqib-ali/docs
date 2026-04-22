@@ -7,7 +7,7 @@ import social_network_graph from '/snippets/social-network.mdx';
 import bank_transfer_graph from '/snippets/bank-transfers.mdx';
 import student_teacher_graph from '/snippets/student-teacher.mdx';
 
-A [GQL](https://gql.net) query typically begins with the MATCH clause, which identifies a graph pattern to search for in the data. It is the foundation for querying nodes, relationships, and their properties. The MATCH clause specifies the structural shape of the subgraph being queried.
+A [GQL](https://gql.net) query typically begins with the `MATCH` clause, which identifies a graph pattern to search for in the data. It is the foundation for querying nodes, relationships, and their properties. The `MATCH` clause specifies the structural shape of the subgraph being queried.
 
 ```gql
 MATCH (u: User)−[:PERFORMED]−>(e: Event {activity: 'Submit'})
@@ -15,7 +15,7 @@ MATCH (u: User)−[:PERFORMED]−>(e: Event {activity: 'Submit'})
 
 In this example, the pattern searches for users who performed an event labeled "Submit". The nodes (`u`, `e`) are labeled with semantic roles, and the relationship `[:PERFORMED]` describes the interaction between them.
 
-Patterns can include multiple relationships and variable-length traversals using the `{m,n}` quantifier. For example, `[:FOLLOWS]->{,3}` matches up to 3 levels of consecutive FOLLOWS relationships. The MATCH clause is frequently used in combination with [WHERE](/docs/querying/where), RETURN, and WITH clauses to build complex queries.
+Patterns can include multiple relationships and variable-length traversals using the `{m,n}` quantifier. For example, `[:FOLLOWS]->{,3}` matches up to 3 levels of consecutive FOLLOWS relationships. The `MATCH` clause is frequently used in combination with [WHERE](/docs/querying/where), [RETURN](/docs/querying/return), and [WITH](/docs/querying/with) clauses to build complex queries.
 
 ## Variable Binding in GQL
 
