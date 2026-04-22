@@ -7,13 +7,21 @@ import social_network_graph from '/snippets/social-network.mdx';
 import bank_transfer_graph from '/snippets/bank-transfers.mdx';
 import student_teacher_graph from '/snippets/student-teacher.mdx';
 
+A [GQL](https://gql.net) query typically begins with the MATCH clause, which identifies a graph pattern to search for in the data. It is the foundation for querying nodes, relationships, and their properties. The MATCH clause specifies the structural shape of the subgraph being queried.
+
+```gql
+MATCH (u: User)−[:PERFORMED]−>(e: Event {activity: 'Submit'})
+```
+
+In this example, the pattern searches for users who performed an event labeled "Submit". The nodes (`u`, `e`) are labeled with semantic roles, and the relationship `[:PERFORMED]` describes the interaction between them.
+
+Patterns can include multiple relationships and variable-length traversals using the `{m,n}` quantifier. For example, `[:FOLLOWS]->{,3}` matches up to 3 levels of consecutive FOLLOWS relationships. The MATCH clause is frequently used in combination with [WHERE](/docs/querying/where), RETURN, and WITH clauses to build complex queries.
 
 ## Variable Binding in GQL
 
 Retrieve all the teachers who liked a comment made by students who they know since 2021 or earlier:
 
-<student_teacher_graph/>
-
+<student_teacher_graph />
 
 ```gql
 MATCH path = (x:teacher)-[:likes ]->
@@ -25,9 +33,9 @@ Here we are binding a `:teacher`-labelled node to the variable `x` and requiring
 
 ## Shortest Path
 
-Find shortest path `path`, from a user `u1` to user `u2` traversing `:knows` edges 1+ (`{1,}`) times.
+Find shortest path `path`, from a user `u1` to user `u2` traversing `:knows` edges 1\+ (`{1,}`) times.
 
-<social_network_graph/>
+<social_network_graph />
 
 ```gql
 MATCH path = ANY SHORTEST (u1:users {username: "saqib"})-
@@ -39,8 +47,7 @@ RETURN u1.username, u2.username, path_length(p) AS num_hops
 
 Find a pair of friends in the same city (`(y.city = x.city)`) who transfer money (`(account_x)−[t1:transfer]−>(account_z)−[t2:transfer]−>(account_y)`) to each other using a common friend who lives elsewhere (`(x.city<>z.city)`).
 
-<bank_transfer_graph/>
-
+<bank_transfer_graph />
 
 ```gql
 MATCH (x:account_holder)−[:friends]−>(y:account_holder)−
