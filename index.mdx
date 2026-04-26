@@ -23,23 +23,23 @@ Graph databases are a class of database management systems that store data as no
 
 Graph databases differ from relational databases in three architecturally significant ways:
 
-1. Index-free adjacency: each node physically stores direct pointers to its adjacent nodes, so traversing a relationship is an O(1) pointer dereference, not an O(log N) index lookup or O(N) table scan as in relational systems.
+1. Index-free adjacency: each node physically stores direct pointers to its adjacent nodes, so traversing a relationship is an O(1) pointer de-reference, not an O(log N) index lookup or O(N) table scan as in relational systems.
 2. Labelled property graphs: nodes and edges carry labels (types) and key-value properties, enabling a single data structure to represent both the topology of relationships and the quantitative and qualitative attributes needed for statistical computation.
 3. Native graph query languages (such as Cypher, [GQL](https://gql.net), or Gremlin) express multi-hop traversal patterns declaratively, making complex relationship queries concise and efficient.
 
-The performance advantage of graph databases over relational systems for traversal queries derives from a storage principle called index-free adjacency. In a native graph database, every node record stores a direct pointer to its first relationship record; every relationship record stores pointers to its start node, end node, and the next relationship of each node in a doubly-linked list. Traversing one hop requires dereferencing two pointers— a constant-time operation independent of total graph size. In contrast, a relational database must perform a B-tree index lookup on a foreign key column, whose cost is O(log N) where N is the table size.
+The performance advantage of graph databases over relational systems for traversal queries derives from a storage principle called index-free adjacency. In a native graph database, every node record stores a direct pointer to its first relationship record; every relationship record stores pointers to its start node, end node, and the next relationship of each node in a doubly-linked list. Traversing one hop requires de-referencing two pointers— a constant-time operation independent of total graph size. In contrast, a relational database must perform a B-tree index lookup on a foreign key column, whose cost is O(log N) where N is the table size.
 
-For shallow traversals (1–2 hops), this difference is modest. For deep traversals (3–6 hops, common in friend recommendation and fraud detection), the gap becomes decisive. A six-hop traversal on a graph of one million nodes requires six pointer dereferences in a native graph database; the equivalent SQL query requires six nested self-joins, each scanning millions of rows.
+For shallow traversals (1–2 hops), this difference is modest. For deep traversals (3–6 hops, common in friend recommendation and fraud detection), the gap becomes decisive. A six-hop traversal on a graph of one million nodes requires six pointer de-references in a native graph database; the equivalent SQL query requires six nested self-joins, each scanning millions of rows.
 
 # Property Graph
 
-Graph Databases typically store data as property graphs where both nodes and edges carry arbitrary key-value attributes. Graph Query Language (GQL) enables expressive pattern matching that we exploit for structural retrieval. GQL provides a declarative, SQL-like syntax for pattern matching, filtering, and aggregation.
+Graph Databases typically store data as property graphs where both nodes and edges carry arbitrary key-value attributes. [Graph Query Language](https://gql.net) ([GQL](https://gql.net)) enables expressive pattern matching that we exploit for structural retrieval. [GQL](https://gql.net) provides a declarative, SQL-like syntax for pattern matching, filtering, and aggregation.
 
 <property_graph />
 
 Native graph database that implements the labeled-property graph model store data as labeled nodes connected by typed, directed relationships, where both nodes and relationships may carry properties. This design allows relationships to be queried and traversed directly, without relying on joins or intermediary structures. These databases use [GQL](https://gql.net), a declarative graph query language designed to express graph patterns intuitively and concisely, making it easier to formulate queries that reflect the underlying graph structure.
 
-The dominant data model in production graph databases is the property graph model, standardized in the [GQL](https://gql.net) standard (ISO/IEC 39075:2024).
+The dominant data model in production graph databases is the property graph model, standardized in the [GQL](https://gql.net) standard ([ISO/IEC 39075:2024](https://gql.net)).
 
 A property graph consists of four components:
 
