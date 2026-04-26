@@ -45,13 +45,13 @@ A property graph consists of four components:
 
 ### Nodes
 
-Represent discrete entities. Each node carries one or more labels (e.g., `:User`, `:Post`, `:Group`) and a set of key- value properties (e.g., `{id: U1, name: 'Saqib', age: 32, location: 'Capitola'}`). Labels enable efficient node-type filtering without full graph scans.
+Represent discrete entities. Each node carries one or more labels (e.g., `:User`, `:Post`, `:Group`) and a set of key- value properties (e.g., `{id: U1, name: 'Sara', age: 32, location: 'Capitola'}`). Labels enable efficient node-type filtering without full graph scans.
 
 ### Relationships (Edges)
 
-Connect exactly two nodes with a named, directed relationship type (e.g., `:FOLLOWS`, `:LIKES`, `:COMMENTED_ON`).
+Connect exactly two nodes with a named, directed relationship type (e.g., `:FOLLOWS`, `:LIVES_IN`).
 
-Relationships are also first-class property containers: a `:FRIENDS` relationship can carry a `{since: '2019-03-15'}` property recording when the friendship was formed. Crucially, in typical native graph storage, each relationship record contains direct pointers to both its start and end nodes, enabling O(1) traversal without index lookup.
+Relationships are also first-class property containers: a `:FOLLOWS` relationship can carry a `{since: '2026-03-15'}` property recording when the friendship was formed. Crucially, in typical native graph storage, each relationship record contains direct pointers to both its start and end nodes, enabling O(1) traversal without index lookup.
 
 ### Properties
 
