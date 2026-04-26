@@ -27,10 +27,55 @@ Graph databases differ from relational databases in three architecturally signif
 2. Labelled property graphs: nodes and edges carry labels (types) and key-value properties, enabling a single data structure to represent both the topology of relationships and the quantitative and qualitative attributes needed for statistical computation.
 3. Native graph query languages (such as Cypher, [GQL](https://gql.net), or Gremlin) express multi-hop traversal patterns declaratively, making complex relationship queries concise and efficient.
 
+The performance advantage of graph databases over relational systems for traversal queries derives from a storage principle called index-free adjacency. In a native graph database, every node record stores a direct pointer to its first relationship record; every relationship record stores pointers to its start node, end node, and the next relationship of each node in a doubly-linked list. Traversing one hop requires dereferencing two pointers— a constant-time operation independent of total graph size. In contrast, a relational database must perform a B-tree index lookup on a foreign key column, whose cost is O(log N) where N is the table size.
+
+For shallow traversals (1–2 hops), this difference is modest. For deep traversals (3–6 hops, common in friend recommendation and fraud detection), the gap becomes decisive. A six-hop traversal on a graph of one million nodes requires six pointer dereferences in a native graph database; the equivalent SQL query requires six nested self-joins, each scanning millions of rows.
+
 # Property Graph
 
 Graph Databases typically store data as property graphs where both nodes and edges carry arbitrary key-value attributes. Graph Query Language (GQL) enables expressive pattern matching that we exploit for structural retrieval. GQL provides a declarative, SQL-like syntax for pattern matching, filtering, and aggregation.
 
 <property_graph />
 
-Native graph database that implements the labeled-property graph model store data as labeled nodes connected by typed, directed relationships, where both nodes and relationships may carry properties. This design allows relationships to be queried and traversed directly, without relying on joins or intermediary structures. These databases use GQL, a declarative graph query language designed to express graph patterns intuitively and concisely, making it easier to formulate queries that reflect the underlying graph structure.
+Native graph database that implements the labeled-property graph model store data as labeled nodes connected by typed, directed relationships, where both nodes and relationships may carry properties. This design allows relationships to be queried and traversed directly, without relying on joins or intermediary structures. These databases use [GQL](https://gql.net), a declarative graph query language designed to express graph patterns intuitively and concisely, making it easier to formulate queries that reflect the underlying graph structure.
+
+The dominant data model in production graph databases is the property graph model, standardized in the [GQL](https://gql.net) standard (ISO/IEC 39075:2024).
+
+A property graph consists of four components:
+
+### Nodes
+
+Represent discrete entities. Each node carries one or more labels (e.g., `:User`, `:Post`, `:Group`) and a set of key- value properties (e.g., `{id: U1, name: 'Saqib', age: 32, location: 'Capitola'}`). Labels enable efficient node-type filtering without full graph scans.
+
+### Relationships (Edges)
+
+Connect exactly two nodes with a named, directed relationship type (e.g., `:FOLLOWS`, `:LIKES`, `:COMMENTED_ON`).
+
+Relationships are also first-class property containers: a `:FRIENDS` relationship can carry a `{since: '2019-03-15'}` property recording when the friendship was formed. Crucially, in typical native graph storage, each relationship record contains direct pointers to both its start and end nodes, enabling O(1) traversal without index lookup.
+
+### Properties
+
+Key-value attributes attached to both nodes and relationships.
+
+Property types include strings, numbers, booleans, dates, and arrays. Properties enable rich filtering and sorting without requiring auxiliary tables.
+
+# Limitations of Relational Databases for Graph Analytics
+
+### The JOIN Problem
+
+Relational databases represent relationships through foreign keys and `JOIN` operations. A minimal social network schema requires at minimum four tables: Users, Posts, Friendships, and Interactions. A query retrieving 'posts liked by friends of friends of user X' requires four JOIN operations across these tables. Each JOIN performs a cross-product followed by a filter, with time complexity O(M x N) where M and N are the sizes of the joined tables. At social-network scale, M and N are measured in billions, making such queries computationally intractable in real time. The standard relational optimization— indexing foreign key columns—reduces each JOIN to O(log N), but this does not fundamentally change the growth rate for multi-hop traversals. A k-hop traversal on a table of N rows scales as O(N x logᵏ N), which becomes prohibitive for k ≥ 3. Graph databases, by contrast, scale as O(k × d) where d is the average node degree— a property of the local graph neighborhood, not the global graph size.
+
+### Schema Flexibility
+
+Relational schemas are defined upfront and are expensive to alter. Adding a new relationship type in a social network- say, a `REACTED_WITH` relationship carrying an emoji type— requires a schema migration: a new table, foreign key constraints, index creation, and potentially hours of downtime on a large database. Property graph schemas accommodate new node labels and relationship types without migration, enabling agile product development at social- network pace.
+
+### Poor Expressivity for Path Queries
+
+SQL has no native path query syntax. Expressing 'find the shortest path between user A and user B' in SQL requires either a recursive CTE (WITH RECURSIVE), which is verbose and poorly optimized, or application-level graph traversal code. [GQL](https://gql.net) expresses the same query in a single intuitive pattern:
+
+```gql
+MATCH path = shortestPath((a:User)-[:FOLLOWS]-{0,}(b:User)) 
+RETURN path
+```
+
+This expressivity gap is not merely syntactic sugar— it determines whether graph analytics is accessible to data analysts
