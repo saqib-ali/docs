@@ -15,7 +15,7 @@ When evaluating a query, [GQL](https://gql.net) keeps track of three things:
 2. the working table, which stores the information computed thus far; and
 3. the working record, which contains the current result tuple.
 
-[GQL](https://gql.net) is developed as a query language for graphs, and recursion is typical when working with Graphs. The typical [GQL](https://gql.net) MATCH pattern `(a)-[:links_to]->{m,n}(b)` selects all nodes `b` that are reachable from `a` by following one or more edges in the graph, traversing the graph using the `:links_to` relation. Recursive queries compute the transitive closure of the graph, and return the nodes in the graph that can be reached starting from a given one.
+[GQL](https://gql.net) is developed as a query language for graphs, and recursion is typical when working with graphs. The typical [GQL](https://gql.net) MATCH pattern `(a)-[:links_to]->{m,n}(b)` selects all nodes `b` that are reachable from `a` by following one or more edges in the graph, traversing the graph using the `:links_to` relation. Recursive queries compute the transitive closure of the graph, and return the nodes in the graph that can be reached starting from a given one.
 
 # Graph Databases
 
