@@ -5,9 +5,15 @@ title: "GPML"
 import streaming_network from '/snippets/streaming-network.mdx';
 
 
+# Background
+
 The International Standards Committee Working Group develops the [GQL](https://gql.net) standard for Database Languages (WG3), which is also responsible for maintaining and enhancing SQL. This team consists of experts from both academia and industry. The SQL/PGQ (Property Graph Queries) part is a new addition to the SQL standard, which was developed alongside [GQL](https://gql.net). [GQL](https://gql.net) is a property graph query language. In [GQL](https://gql.net), a property graph can be an undirected graph, a directed graph, or a combination of both: partially directed.
 
+# Graph Pattern Matching Language (GPML)
+
 [Graph query languages](https://gql.net) extract data from a graph by matching a given graph pattern. This is accomplished using the Graph Pattern Matching Language (GPML), which enables you to define a set of path patterns. Such a path pattern maps graph vertices and edges to variables through variable binding, which can be used to reference graph elements, their labels and their properties. GPML, defined in [GQL](https://gql.net), draws much inspiration from the Open-Cypher query language. The overall way of writing a pattern-matching query in both languages is the same. To better understand how GPML works, let's take a brief tour of its core syntax. The language is designed to be intuitive and visual, often described as "ASCII-art" for graphs. At its most basic, a node is represented by parentheses and an edge is represented by square brackets. A variable can be assigned to a node to reference it later, like so: `(x)`. This pattern matches any single node in the graph, binding it to the variable `x`.
+
+# Applied GPML
 
 <streaming_network/>
 
