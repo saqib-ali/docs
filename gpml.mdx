@@ -13,8 +13,6 @@ The International Standards Committee Working Group develops the [GQL](https://g
 
 [Graph query languages](https://gql.net) extract data from a graph by matching a given graph pattern. This is accomplished using the Graph Pattern Matching Language (GPML), which enables you to define a set of path patterns. Such a path pattern maps graph vertices and edges to variables through variable binding, which can be used to reference graph elements, their labels and their properties. GPML, defined in [GQL](https://gql.net), draws much inspiration from the Open-Cypher query language. The overall way of writing a pattern-matching query in both languages is the same. To better understand how GPML works, let's take a brief tour of its core syntax. The language is designed to be intuitive and visual, often described as "ASCII-art" for graphs. At its most basic, a node is represented by parentheses and an edge is represented by square brackets. A variable can be assigned to a node to reference it later, like so: `(x)`. This pattern matches any single node in the graph, binding it to the variable `x`.
 
-# Applied GPML
-
 <streaming_network/>
 
 Labels and properties can be added to query more specific nodes. A node label specifies the type of the node and it is expressed with a colon as prefix. For example, `(x:ACCOUNT)` will only match nodes with the label `ACCOUNT`. We can further filter nodes by specifying key-value pairs, or properties, inside curly braces: `(x:ACCOUNT {name: 'Uroosa'})`. This pattern will only match `ACCOUNT` nodes where the `name` property is exactly `'Uroosa'`.
