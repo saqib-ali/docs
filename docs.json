@@ -10,9 +10,9 @@
   "favicon": "/images/gql_ch_favicon.png",
   "seo": {
     "metatags": {
-        "canonical": "https://gql.ch"
+      "canonical": "https://gql.ch"
     }
-  }, 
+  },
   "navigation": {
     "tabs": [
       {
@@ -59,15 +59,15 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
