@@ -37,6 +37,12 @@
               "docs/functions/collect-list",
               "docs/functions/reduce"
             ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "gpml"
+            ]
           }
         ]
       }
