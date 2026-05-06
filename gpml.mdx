@@ -27,6 +27,8 @@ Edges are represented using arrows between nodes. A directed edge is drawn with 
 
 searches for a specific `ACCOUNT` node named `'Uroosa'` (bound to `a`), connected by  `WATCHED` relationship (bound to `e`) to any other `MOVIE` node (bound to `m)`. This simple, declarative syntax allows users to easily express complex structural queries to retrieve data from the graph.
 
+### Multi-hop traversal 
+
 Furthermore, these path patterns can be chained together to describe longer, more complex traversals. For example, the pattern:
 
 ```gql
@@ -34,6 +36,8 @@ Furthermore, these path patterns can be chained together to describe longer, mor
 ```
 
 would find all pairs of `ACCOUNT` that watched the same `MOVIE` `m`.
+
+### Multiple patterns matching
 
 A query can also contain multiple patterns, separated by a comma. This allows for reusing variables to create more complex conditions. For instance, the pattern:
 
@@ -44,6 +48,11 @@ A query can also contain multiple patterns, separated by a comma. This allows fo
 
 extends the previous query to include a predicate such that `a` and `b` ALSO have a `FRIEND` relationship between them. This comma separated patterns effectively join the results of two distinct patterns on the common variables `a` and `b`.
 
+
+### Variable-length path (quantified path pattern)
+
 GPML also supports more advanced constructs to handle complex queries. One of the most powerful features is specifying variable-length paths using a quantifier in the edge pattern. For example, `(a)-[:FRIEND]->{1,}(b)` will find a path of any length greater than one between nodes `a` and `b` using only `FRIEND` relationships. Quantifiers can also specify bounds, such as `{2,5}` to match paths with a length between two and five edges.
+
+### Path variable binding
 
 Finally, an entire path can be bound to a variable, such as: `z = (a)-[:FRIEND]->{1,6}(b)` which allows the pattern to bind the whole sequence of nodes and edges that make up the path `z`.
